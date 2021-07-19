@@ -35,6 +35,7 @@ let table = document.getElementById("employee-table-body");
 let searchTerm = document.getElementById("search-field");
 
 var addEmployeeModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
+var editEmployeeModal = new bootstrap.Modal(document.getElementById('editEmployeeModal'));
 
 function showAddModal () {
     addEmployeeModal.show();
@@ -44,11 +45,56 @@ function hideAddModal () {
     addEmployeeModal.hide();
 }
 
+function showEditModal (index) {
+    editEmployeeModal.show();
+    let NINumber = employeeData[index]['ninumber'];
+    let fullName = employeeData[index]['fullname'];
+    let phoneNumber = employeeData[index]['phone'];
+    let address = employeeData[index]['address'];
+    let department = employeeData[index]['department'];
+
+    document.getElementById("edit-NINumber").value = NINumber;
+    document.getElementById("edit-fullName").value = fullName;
+    document.getElementById("edit-phoneNumber").value = phoneNumber;
+    document.getElementById("edit-address").value = address;
+    document.getElementById("edit-department").value = department;
+
+    window.selectedIndex = index;
+}
+
+function hideEditModal () {
+    editEmployeeModal.hide();
+}
+
 showAllEmployees();
 
 function deleteEmployee(index) {
     document.getElementById("row-"+index).remove();
     employeeData.splice(index,1);
+}
+
+function saveChangesEmployee() {
+    let NINumber = document.getElementById("edit-NINumber").value;
+    let fullName = document.getElementById("edit-fullName").value;
+    let phoneNumber = document.getElementById("edit-phoneNumber").value;
+    let address = document.getElementById("edit-address").value;
+    let department = document.getElementById("edit-department").value;
+
+    employeeData[selectedIndex]['ninumber'] = NINumber;
+    employeeData[selectedIndex]['fullname'] = fullName;
+    employeeData[selectedIndex]['phone'] = phoneNumber;
+    employeeData[selectedIndex]['address'] = address;
+    employeeData[selectedIndex]['department'] = department;
+
+    let row = document.getElementById('row-' + selectedIndex);
+    row.childNodes[0].innerText = NINumber;
+    row.childNodes[1].innerText = fullName;
+    row.childNodes[2].innerText = phoneNumber;
+    row.childNodes[3].innerText = address;
+    row.childNodes[4].innerText = department;
+
+    selectedIndex = '';
+    editEmployeeModal.hide();
 }
 
 function addEmployee() {
@@ -87,7 +133,7 @@ function addEmployeeRowToTable(index) {
 
         actions = document.createElement("td");
         actions.style = 'max-width:100%;white-space:nowrap;';
-        actions.innerHTML = '<button href="#" class="btn btn-warning btn-sm" id="edit-' + index + '" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button><button href="#" onclick="deleteEmployee(' + index + ')" class="btn btn-sm btn-danger" id="delete-' + index + ' title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>';
+        actions.innerHTML = '<button href="#" onclick="showEditModal(' + index + ')" class="btn btn-warning btn-sm" id="edit-' + index + '" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></button><button href="#" onclick="deleteEmployee(' + index + ')" class="btn btn-sm btn-danger" id="delete-' + index + ' title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></button>';
 
         row.appendChild(NINumber);
         row.appendChild(fullName);

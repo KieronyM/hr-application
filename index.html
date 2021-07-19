@@ -28,19 +28,8 @@
           />
           HR Web Application
         </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
         <div
-          class="collapse navbar-collapse justify-content-end"
+          class="justify-content-end"
           id="navbarNav"
         >
           <ul class="navbar-nav">
@@ -124,6 +113,50 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
             <button type="button" class="btn btn-success" onclick="addEmployee()">Add Employee</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Edit Employee Modal -->
+    <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editEmployeeModalLabel">Edit Employee</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <div class="mb-3">
+                  <label class="form-label" for="NINumber">NI Number</label>
+                  <input class="form-control" type="text" name="NINumber" id="edit-NINumber"/>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="fullName">Full Name</label>
+                  <input class="form-control" type="text" name="fullName" id="edit-fullName" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="phoneNumber">Phone Number</label>
+                  <input class="form-control" type="text" name="phoneNumber" id="edit-phoneNumber" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="address">Address</label>
+                  <textarea class="form-control" rows="4" name="address" id="edit-address"></textarea>
+                </div>
+                <label class="form-label" for="department">Department</label>
+                <select class="form-control" id="edit-department" name="department">
+                  <option>HR</option>
+                  <option>Sales</option>
+                  <option>IT</option>
+                </select>
+              </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success" onclick="saveChangesEmployee()">Save Changes</button>
           </form>
           </div>
         </div>
