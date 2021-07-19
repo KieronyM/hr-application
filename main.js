@@ -37,6 +37,8 @@ let searchTerm = document.getElementById("search-field");
 var addEmployeeModal = new bootstrap.Modal(document.getElementById('addEmployeeModal'));
 var editEmployeeModal = new bootstrap.Modal(document.getElementById('editEmployeeModal'));
 
+showAllEmployees();
+
 function showAddModal () {
     addEmployeeModal.show();
 }
@@ -65,8 +67,6 @@ function showEditModal (index) {
 function hideEditModal () {
     editEmployeeModal.hide();
 }
-
-showAllEmployees();
 
 function deleteEmployee(index) {
     document.getElementById("row-"+index).remove();
@@ -110,7 +110,6 @@ function addEmployee() {
 }
 
 function showAllEmployees() {
-    //alert("Showing all employees " + employeeData.length);
     for (let index = 0; index < employeeData.length; index++) {
         addEmployeeRowToTable(index);
     }
